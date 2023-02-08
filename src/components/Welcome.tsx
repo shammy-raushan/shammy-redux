@@ -17,34 +17,8 @@ export function Welcome() {
     setOpeningScreenVisible(false);
   }, 2000);
 
-  //   const [value, setValue] = React.useState(0);
-  //   const [tabs, setTabs] = React.useState(0);
-  //   const handleChange = (data: React.SetStateAction<number>) => {
-  //     console.log("newValue", data);
-  //     setValue(data);
-  //   };
-  //   const handleChangeTab = (data: React.SetStateAction<number>) => {
-  //     console.log("newValue", data);
-  //     setTabs(data);
-  //   };
-  //   const navigate = useNavigate();
-
-  //   const navigateToContacts = () => {
-  //     // 👇️ navigate to /contacts
-  //     navigate("/contacts");
-  //   };
-
-  //   const navigateHome = () => {
-  //     // 👇️ navigate to /
-  //     navigate("/");
-  //   };
-
   return (
     <>
-      {/* <Routes>
-        <Route path="/contacts" element={<SearchBar />} />
-        <Route path="/" element={<Login />} />
-      </Routes> */}
       <div className={styles.container}>
         <div>
           {isOpeningScreenVisible && (
@@ -58,8 +32,6 @@ export function Welcome() {
             />
           )}
         </div>
-        {/* <Button variant="contained">LOGIN</Button> */}
-        {/* <Button variant="contained">Register</Button> */}
       </div>
     </>
   );

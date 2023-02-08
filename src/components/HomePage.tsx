@@ -23,50 +23,27 @@ import Stack from "@mui/material/Stack";
 import { top100Hotels } from "./MockData";
 // import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { HotelsList } from "./MockData";
-
-const darkTheme = createTheme({
-  palette: {
-    type: "dark",
-    background: {
-      default: "hsl(230, 17%, 14%)",
-    },
-  },
-});
-
-const lightTheme = createTheme({
-  palette: {
-    type: "light",
-    background: {
-      default: "hsl(0, 0%, 100%)",
-    },
-  },
-});
+import MainPage from "./MainPage";
 
 export function HomePage() {
-  const [mode, setMode] = useState("light");
-
-  const selectedTheme = mode === "dark" ? darkTheme : lightTheme;
-
-  //   const [isOpeningScreenVisible, setOpeningScreenVisible] = useState(true);
-  //   setTimeout(() => {
-  //     setOpeningScreenVisible(false);
-  //   }, 2000);
-  const [toggleDark, settoggleDark] = useState(false);
-  //   const checkbox = document.getElementById("checkbox");
-  //   checkbox?.addEventListener("change", () => {
-  //     document.getElementsByClassName("theme");
-  //   });
-  //   const theme = document.querySelector(".theme");
-  //   const theme2 = document.querySelector(".theme2");
-  // theme2.oncli
+  const [type, setType] = React.useState(0);
+  const [mode, setMode] = useState(false);
+  const [value, setValue] = React.useState(0);
+  const [tabs, setTabs] = React.useState(0);
   const navigate = useNavigate();
+
+  const handleHeader = (data: React.SetStateAction<number>) => {
+    console.log("newValue", data);
+    setType(data);
+  };
+
+  const onClickHandler = () => {
+    setMode(!mode);
+  };
   const goToRecentlyBooked = () => {
-    // This will navigate to first component
     navigate("/hotels");
   };
 
-  const [value, setValue] = React.useState(0);
-  const [tabs, setTabs] = React.useState(0);
   const handleChange = (data: React.SetStateAction<number>) => {
     console.log("newValue", data);
     setValue(data);
@@ -78,28 +55,32 @@ export function HomePage() {
 
   return (
     <>
-      <ThemeProvider theme={selectedTheme}>
-        <CssBaseline />
-        <Container maxWidth="lg">
-          <h1>Hello</h1>
-          <Switch
-            onChange={() => setMode(mode === "light" ? "dark" : "light")}
-          />
-        </Container>
-      </ThemeProvider>
+      {/* Toggle starts */}
+      <div
+        style={{
+          background: `${mode ? "#FFFFFF" : "#04243A"}`,
+        }}
+      >
+        <button
+          className={styles.toggle}
+          onClick={onClickHandler}
+          style={{ background: `${mode ? "rgba(255,255,255,1)" : "#333"}` }}
+        >
+          <div
+            className={styles.btn}
+            style={{
+              marginLeft: `${mode ? "53px" : "2px"}`,
+              background: `${mode ? "#333" : "#fff"}`,
+            }}
+          />{" "}
+        </button>
 
-      <div>
-        {/* <input type="checkbox" className={styles.checkbox} id="checkbox" />
-        <label htmlFor="checkbox" className={styles.label}>
-          <Typography className={styles.dark}>Dark</Typography>
-          <Typography className={styles.light}>Light</Typography>
-          <div className={styles.ball}></div>
-        </label> */}
+        {/* toggle ends */}
 
         <div
-          className={styles.theme2}
           style={{
             padding: "16px",
+            marginTop: "50px",
           }}
         >
           <Grid container>
@@ -172,35 +153,40 @@ export function HomePage() {
                 Trending{" "}
               </div>
             </div>
-            {/* <ScrollTab /> */}
           </Grid>
         </div>
-        <div className={styles.Img}>
-          {HotelsList.map(
-            (items: {
-              img: any;
-              title: string;
-              status: string;
-              amount: string;
-            }) => (
-              <>
-                <div className={styles.Img}>
-                  <img src={items.img} alt="" className={styles.ImgImage} />
-                  <Typography variant="h5" className={styles.ImageTitle}>
-                    {items.title}
-                  </Typography>
-                  <Typography variant="h6" className={styles.ImageStatus}>
-                    {items.status}
-                  </Typography>
-                  <Typography variant="h4" className={styles.ImageAmount}>
-                    {items.amount}
-                  </Typography>
-                </div>
-              </>
-            )
-          )}
-        </div>
 
+        {value === 0 && (
+          <div className={styles.Img}>
+            {HotelsList.map(
+              (items: {
+                img: any;
+                title: string;
+                status: string;
+                amount: string;
+              }) => (
+                <>
+                  <div className={styles.Img}>
+                    <img src={items.img} alt="" className={styles.ImgImage} />
+                    <Typography variant="h5" className={styles.ImageTitle}>
+                      {items.title}
+                    </Typography>
+                    <Typography variant="h6" className={styles.ImageStatus}>
+                      {items.status}
+                    </Typography>
+                    <Typography variant="h4" className={styles.ImageAmount}>
+                      {items.amount}
+                    </Typography>
+                  </div>
+                </>
+              )
+            )}
+          </div>
+        )}
+
+        {value === 1 && <div>2ALL HOTEls</div>}
+        {value === 2 && <div>3ALL HOTEls</div>}
+        {value === 3 && <div>4ALL HOTEls</div>}
         <div className={styles.footerTabs}>
           <div
             className={`${

@@ -1,9 +1,17 @@
 import one from "./asset/img1.png";
 import NewImg from "./asset/small_Img.png";
-import two from "./asset/img1.png";
-import three from "./asset/img1.png";
-import four from "./asset/img1.png";
-import five from "./asset/img1.png";
+import one1 from "./asset/1.png";
+import two from "./asset/2.png";
+import three from "./asset/3.png";
+import four from "./asset/4.png";
+import five from "./asset/5.png";
+import six from "./asset/6.png";
+import star from "./asset/starImg.png";
+import Image1 from "./asset/Board1.png";
+import Image2 from "./asset/Board2.png";
+import Image3 from "./asset/Board3.png";
+
+import { start } from "repl";
 
 export const HotelsList = [
   {
@@ -62,7 +70,63 @@ export const RecentlyBooked = [
     amount: " $205 /night",
   },
 ];
+//My Bookmarks
 
+export const Bookmarks = [
+  {
+    img: one1,
+    title: "Radisson Blu Hotel",
+    star: star,
+
+    status: "Lagos, Nigeria",
+    rating: "5.0",
+    amount: " $205 /night",
+  },
+  {
+    img: two,
+    title: "Radisson Blu ",
+    star: star,
+
+    status: "Lagos, Nigeria",
+    rating: "5.0",
+    amount: " $205 /night",
+  },
+  {
+    img: three,
+    title: "Radisson Blu Hotel",
+    star: star,
+
+    status: "Lagos, Nigeria",
+    rating: "5.0",
+    amount: " $205 /night",
+  },
+  {
+    img: four,
+    title: "Radisson Blu Hotel",
+    star: star,
+
+    status: "Lagos, Nigeria",
+    rating: "5.0",
+    amount: " $205 /night",
+  },
+  {
+    img: five,
+    title: "Radisson Blu Hotel",
+    star: star,
+
+    status: "Lagos, Nigeria",
+    rating: "5.0",
+    amount: " $205 /night",
+  },
+  {
+    img: six,
+    title: "Radisson Blu Hotel",
+    star: star,
+    status: "Lagos, Nigeria",
+    rating: "5.0",
+    amount: " $205 /night",
+  },
+];
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 export const top100Hotels = [
   { title: "The Shawshank Redemption", year: 1994 },
@@ -190,4 +254,22 @@ export const top100Hotels = [
   { title: "Snatch", year: 2000 },
   { title: "3 Idiots", year: 2009 },
   { title: "Monty Python and the Holy Grail", year: 1975 },
+];
+
+export const productData = [
+  {
+    imgUrl: Image1,
+    name: "Image1",
+    desc: "1hdgfjksdlm",
+  },
+  {
+    imgUrl: Image2,
+    name: "Image2",
+    desc: "shammy2",
+  },
+  {
+    imgUrl: Image3,
+    name: "Image3",
+    desc: "shammy26767",
+  },
 ];

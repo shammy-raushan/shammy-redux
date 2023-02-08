@@ -1,25 +1,26 @@
 import { Button, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-
+import deactiveStar from "./asset/recentlyBooked.png";
+import activeStar from "./asset/bookmark.png";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import styles from "./Welcome.module.scss";
-import { RecentlyBooked } from "./MockData";
+import { Bookmarks, RecentlyBooked } from "./MockData";
 import BackArrow from "./asset/Back.png";
 
 export function BookedHotels() {
-  const nav = useNavigate();
+  const [tabs, setTabs] = React.useState(0);
+
+  const navigate = useNavigate();
   const goToHomePage = () => {
     // This will navigate to first component
-    nav("/home");
-  };
-  const goToLogin = () => {
-    // This will navigate to first component
-    nav("/login");
+    navigate("/home");
   };
 
-  // if (typeof 25.01.2023 === "date") {
-  //   console.log("This is a date, indeed!");
-  // }
+  const handleChangeTab = (data: React.SetStateAction<number>) => {
+    console.log("newValue", data);
+    setTabs(data);
+  };
+
   return (
     <>
       {" "}
@@ -33,17 +34,30 @@ export function BookedHotels() {
               marginLeft: "10px",
             }}
           />
-          <Typography variant="h5">Recently Booked</Typography>
+          {tabs === 0 && <Typography variant="h5">Recently Booked</Typography>}
+          {tabs === 1 && <Typography variant="h5">My Bookmark</Typography>}
+
+          <div onClick={(e) => handleChangeTab(0)}>
+            <img
+              src={tabs === 0 ? activeStar : deactiveStar}
+              style={{ marginTop: "10px" }}
+            />
+          </div>
+          <div onClick={(e) => handleChangeTab(1)}>
+            <img
+              src={tabs === 1 ? activeStar : deactiveStar}
+              style={{ marginTop: "10px" }}
+            />
+          </div>
         </div>
       </div>
-      <div
-        style={{
-          background: "#E8F8EF",
-          padding: "16px",
-        }}
-      >
-        {/* Grid items */}
-        <div>
+      {tabs === 0 && (
+        <div
+          style={{
+            background: "#E8F8EF",
+            padding: "16px",
+          }}
+        >
           {RecentlyBooked.map((items) => (
             <>
               <Grid
@@ -59,25 +73,84 @@ export function BookedHotels() {
                   <img src={items.img} />
                 </Grid>
                 <Grid container xs={6} sm={8} md={9} lg={9}>
-                  <Grid item lg={3} md={3} xs={6}>
-                    <Typography>{items.title}</Typography>
+                  <Grid item>
+                    <Typography
+                      style={{
+                        marginLeft: "20px",
+                      }}
+                    >
+                      {items.title}
+                    </Typography>
                   </Grid>
-                  <Grid item lg={4}>
-                    <Typography>{items.status}</Typography>
+                  <Grid item>
+                    <Typography
+                      style={{
+                        marginLeft: "20px",
+                      }}
+                    >
+                      {items.status}
+                    </Typography>
                   </Grid>
-                  <Grid item lg={4}>
-                    <Typography>{items.rating}</Typography>
+                  <Grid item>
+                    <Typography
+                      style={{
+                        marginLeft: "20px",
+                      }}
+                    >
+                      {items.rating}
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Grid item xs={3} sm={1} md={1} lg={1}>
-                  <Typography>{items.amount}</Typography>
+                  <Typography
+                    style={{
+                      textAlign: "right",
+                    }}
+                  >
+                    {items.amount}
+                  </Typography>
                 </Grid>
               </Grid>
             </>
           ))}
         </div>
-      </div>
-      {/* <Button onClick={goToLogin}>Loginnnnnn</Button> */}
+      )}
+      {tabs === 1 && (
+        <div
+          style={{
+            background: "#E8F8EF",
+            padding: "16px",
+          }}
+        >
+          {Bookmarks.map((items) => (
+            <>
+              <div className={styles.bookmark}>
+                <div>
+                  <img src={items.img} />
+                </div>{" "}
+                <Typography variant="h5">{items.title}</Typography>
+                <Grid container>
+                  <Grid item>
+                    {" "}
+                    <img src={items.star} />{" "}
+                  </Grid>
+                  <Grid item>
+                    {" "}
+                    <Typography>{items.rating}</Typography>
+                  </Grid>
+                  <Grid item>
+                    {" "}
+                    <Typography>{items.status}</Typography>
+                  </Grid>
+                </Grid>{" "}
+                <Typography>{items.amount}</Typography>
+              </div>
+
+              {/* {items.title} {items.rating} {items.amount} */}
+            </>
+          ))}
+        </div>
+      )}
     </>
   );
 }

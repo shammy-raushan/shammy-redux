@@ -1,48 +1,61 @@
 // .container {
 //      padding: 16px;
 // }
-.label {
-  background-color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 50px;
-  height: 26px;
-  padding: 5px;
-  width: 50px;
+.container {
   position: relative;
-  transform: scale(1.5s);
+  text-align: center;
+  color: white;
 }
-.dark {
-  color: #f1c40f;
-}
-.light {
-  color: #f39c12;
-}
-.checkbox {
-  opacity: 0;
+.imgText {
   position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.ball {
+html,
+body,
+#root {
+  height: 100%;
+}
+
+h1 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button:focus {
+  outline: none;
+}
+
+.toggle {
+  border: 0;
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  position: absolute;
+  top: 2%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.btn {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  height: 22px;
-  width: 22px;
-  top: 2px;
-  left: 2px;
-  background-color: #fff;
-  position: absolute;
-  transition: transform 0.2s linear;
+  transition: 0.4s ease-in-out;
 }
 
-.checkbox:checked + .label .ball {
-  transform: translateX(24px);
-}
+// toggle ends
 
-.theme {
-  transition: background 0.2s linear;
-  background: #292c35;
-}
 .search {
   background: #d3d3d3;
   color: #d3d3d3;
@@ -62,7 +75,7 @@
   display: flex;
   margin-left: 10px;
   padding: 16px 0;
-  background: #d3d3d3;
+  //   background: #d3d3d3;
 
   &Image {
     margin-right: 10px;
@@ -165,4 +178,136 @@
 
   width: 45% !important;
   padding: 6px;
+}
+.activities_tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.activities_active_tabs {
+  background: #ed1164;
+  padding: 4px 12px 6px;
+  border: 1px solid #f14687;
+  border-radius: 17px;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.24px;
+}
+
+.activities_deactive_tabs {
+  background: #ffffff;
+  padding: 4px 12px 6px;
+  border: 1px solid #e2e2e2;
+  border-radius: 17px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.24px;
+  color: #404040;
+}
+
+.bookmark {
+  border-radius: 11px;
+  background: #ffffff;
+  width: 50%;
+  height: 260px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+// pagination
+.carouselPagination {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.paginationDot {
+  height: 10px;
+  width: 10px;
+  background-color: #1ab65c;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.paginationDot:hover {
+  transform: scale(2.2);
+}
+
+.paginationDotActive {
+  //   height: 10px;
+  //   width: 10px;
+  //   background-color: white;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  //   margin-left: 10px;
+  //   cursor: pointer;
+  background-color: red;
+}
+//onboard
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+
+  //   position: absolute;
+  //   bottom: 145px;
+  //   left: 32%;
+  //   transform: translate(-50%, 0);
+  //   display: flex;
+  //   gap: 5px;
+  //   margin-left: 5px;
+
+  &Active {
+    //   background: #ed1164;
+    background: white;
+    // padding: 4px 12px 6px;
+    // border: 1px solid #1ab65c;
+    // border-radius: 17px;
+    // color: #ffffff;
+    // font-weight: 400;
+    // font-size: 14px;
+    // line-height: 20px;
+    // letter-spacing: 0.24px;
+  }
+  &Deactive {
+    background: #ffffff;
+    padding: 4px 12px 6px;
+    border: 1px solid #1ab65c;
+    border-radius: 17px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.24px;
+    color: #1ab65c;
+  }
+}
+.OnBoardBtn {
+  position: absolute;
+  width: 80%;
+  height: 53px;
+  background: #1ab65c;
+  color: #e0ffff;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 26.5px;
+
+  &Deactive {
+    background: #d3d3d3;
+  }
+}
+
+.btnActive {
+  background: #ed1164;
+  color: "#ed1164";
 }

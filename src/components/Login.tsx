@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Grid } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { Button, Grid, Typography } from "@material-ui/core";
 import styles from "./Login.module.scss";
 import { useNavigate } from "react-router-dom";
 
@@ -9,8 +9,16 @@ export function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("user-info")) {
+  //     navigate("/home");
+  //   }
+  // }, []);
+  function reg1() {
+    navigate("/reg");
+  }
   async function login() {
-    console.warn(name, email, password);
+    console.warn("data", email, password);
     let item = { email, password };
     let result = await fetch("http://localhost:3000/customer", {
       method: "POST",
@@ -20,32 +28,17 @@ export function Login() {
       },
       body: JSON.stringify(item),
     });
-
     result = await result.json();
     localStorage.setItem("user-info", "JSON.stringify(result)");
-    navigate("/customer");
+    navigate("/home");
   }
+
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.register}>
         <Grid container>
           <Grid item xs={12} sm={12}>
-            <h3>LOGIN</h3>
-          </Grid>
-
-          <Grid item xs={12} sm={12}>
-            <label htmlFor="">Name</label>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <label htmlFor="">Email</label>
+            <Typography variant="h3">Login to your Account</Typography>
           </Grid>
           <Grid item xs={12} sm={12}>
             <input
@@ -53,29 +46,40 @@ export function Login() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={styles.registerItems}
             />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <label htmlFor="">Password</label>
           </Grid>
           <Grid item xs={12} sm={12}>
             <input
               type="password"
               placeholder="Password"
               value={password}
+              // onChange={setPassword}
               onChange={(e) => setPassword(e.target.value)}
+              className={styles.registerItems}
             />
           </Grid>
           <Grid item xs={12} sm={12}>
-            <Button variant="contained" onClick={login}>
+            <button onClick={login} className={styles.registerBtn}>
               LOGIN
-            </Button>
-          </Grid>
+            </button>
+          </Grid>{" "}
+          <Grid item xs={4} sm={4}>
+            <div>
+              <Typography
+                style={{
+                  marginTop: "250px",
+                }}
+              >
+                Don’t have an account?{" "}
+              </Typography>{" "}
+              <Button variant="text" onClick={reg1}>
+                Sign up
+              </Button>
+            </div>
+          </Grid>{" "}
         </Grid>
       </div>
     </>
   );
-}
-function getUser() {
-  throw new Error("Function not implemented.");
 }
